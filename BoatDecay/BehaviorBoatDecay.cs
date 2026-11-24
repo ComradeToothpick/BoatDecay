@@ -17,6 +17,8 @@ public class BehaviorBoatDecay : EntityBehavior
 {
     private float timeSinceLastDamage = 0.0f;
     private EntityPos lastPos;
+    private const float timeInterval = 10.0f;
+    private const float decayDistance = 30.0f;
     
     public BehaviorBoatDecay(Entity entity) : base(entity)
     {
@@ -28,9 +30,9 @@ public class BehaviorBoatDecay : EntityBehavior
         return entity.WatchedAttributes.GetFloat("boatdecay:durability", 1.0f);
     }
 
-    public float GetMaxDurabilityPercent()
+    public float GetMaxDurabilityRatio()
     {
-        return GetDurability() * 100.0f / GetMaxDurability();
+        return GetDurability() / GetMaxDurability();
     }
     
     private float GetMaxDurability()
@@ -82,19 +84,16 @@ public class BehaviorBoatDecay : EntityBehavior
 
     public override void OnGameTick(float deltaTime)
     {
+        timeSinceLastDamage -= deltaTime;
         if (timeSinceLastDamage <= 0.0f)
         {
             if (lastPos == null) lastPos = entity.Pos;
-            if (entity.Pos.HorDistanceTo(lastPos) > 30.0f)
+            if (entity.Pos.HorDistanceTo(lastPos) > decayDistance)
             {
                 lastPos = entity.Pos;
                 DecayDurability();
             }
-            timeSinceLastDamage = 10.0f;
-        }
-        else
-        {
-            timeSinceLastDamage -= deltaTime;
+            timeSinceLastDamage = timeInterval;
         }
         base.OnGameTick(deltaTime);
     }

@@ -19,6 +19,12 @@ public class BoatDecayModSystem : ModSystem
         SailingSpeedPatch.Apply(harmony, Mod.Logger);
     }
 
+    public override void Dispose()
+    {
+        harmony.UnpatchAll(HarmonyId);
+        base.Dispose();
+    }
+
     public override void StartServerSide(ICoreServerAPI api)
     {
         base.StartServerSide(api);
