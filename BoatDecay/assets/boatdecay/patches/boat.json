@@ -1,0 +1,3 @@
+[
+  { "file": "game:entities/nonliving/boat-sailed", "op": "addmerge", "path": "/behaviors", "value": [ {"name":  "boatdecay:boatdecay"}] }
+]
