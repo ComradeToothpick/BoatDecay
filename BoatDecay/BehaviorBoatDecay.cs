@@ -1,15 +1,4 @@
 using Vintagestory.API.Common.Entities;
-using HarmonyLib;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Reflection.Emit;
-using Vintagestory.API.Common;
-using Vintagestory.API.Common.Entities;
-using Vintagestory.API.Datastructures;
-using Vintagestory.GameContent;
-using Vintagestory.API.Datastructures;
 
 namespace BoatDecay;
 
